@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Scope</title>
+	</head>
+	<body>
+		<a href="/codigo-practico-ejercicios/">Go back</a>
+		<p><em>Abre la consola</em></p>
+		asasda
+		<script>
+			///////////////////////////////////////////////
+			// 				==Scope Block==
+			///////////////////////////////////////////////
+
+			// Como se comentó anteriormen una solución al problema de
+			// var i era cambiar la declaración por let i. Este pequeño
+			//cambio hace la diferencia ya que let trabaja con el block scope
+			// y esto quiere decir que por cada iteración del loop se está generan
+			// un nuevo block scope permitiendo recordar el valor de i
+			function printNumbers3() {
+				for (let i = 0; i < 10; i++) {
+					setTimeout(function () {
+						console.log(i);
+					}, 100);
+				}
+			}
+
+			printNumbers3();
+		</script>
+	</body>
+</html>

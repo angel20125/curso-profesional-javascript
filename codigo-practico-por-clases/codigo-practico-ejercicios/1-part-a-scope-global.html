@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Scope</title>
+	</head>
+
+	<body>
+		<a href="/codigo-practico-ejercicios/">Go back</a>
+		<p><em>Abre la consola</em></p>
+
+		<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+
+		<script>
+			///////////////////////////////////////////////
+			// 				==Scope Global==
+			///////////////////////////////////////////////
+			// en el navegador es representado por windows
+			var message = 'Hello, Platzi!';
+
+			// incluso cuando importamos librerías como jquery, estás
+			// estarán disponibles en el ambito global, el peligro del,
+			// scope global es que un script puede sobreescribir
+			// el comportamiento de $ , diciendo  que al usar $ muestre un mensaje
+			// si se escribi $ entonces
+			var $ = function (message) {
+				console.log('Say: ' + message);
+			};
+		</script>
+	</body>
+</html>
