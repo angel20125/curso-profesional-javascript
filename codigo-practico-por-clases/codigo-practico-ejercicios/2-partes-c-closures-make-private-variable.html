@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>Closures</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<a href="../codigo-practico-ejercicios/">Go back</a>
+		<p><em>Abre la consola</em></p>
+		<script>
+			///////////////////////////////////////////////
+			// 				==Clousores==
+			///////////////////////////////////////////////
+			// clase 6
+
+			/**
+			 * En ocasiones se tiene variables  dentro de un contexto,
+			 * y como programadores se desea que no se modifiquen desde
+			 * cualquier parte del código, pero que si permita realizar
+			 * operaciones sobre esa variable sin que cambie su valor.
+			 *
+			 * La solución  es crear una función que aloje la variable con
+			 * su valor inicial, y que retorne funciones que permitan operar
+			 * sobre esta variable.
+			 *
+			 *      - Ejemplo 1, se puede observar como se puede modificar
+			 *        una variable desde  cualquier parte del  código.
+			 *      - Ejemplo 2,  se puede observar como se puede encapular
+			 *        una variable haciendola privada al entorno global.
+			 * */
+
+			//Ejemplo 1
+			const counter_1 = {
+				count: 3,
+			};
+			console.group('Ejemplo 1');
+			console.log(counter_1.count); // muestra 3, se muestra la variable original
+			counter_1.count = 99; // se cambia la variable externamente
+			console.log(counter_1.count); //99
+			console.groupEnd();
+			////////////////////////////////
+
+			// Ejemplo 2
+			//Se crea un función para conservar el valor de una variable privado
+			function makeCounterPrivade(n) {
+				let countPrivate = n;
+
+				return {
+					increase: function () {
+						countPrivate = countPrivate + 1;
+					},
+					decrease: function () {
+						countPrivate = countPrivate - 1;
+					},
+					getCountPrivate: function () {
+						return countPrivate;
+					},
+				};
+			}
+			let counter_2 = makeCounterPrivade(7); //
+
+			console.group('Ejemplo 2');
+			console.log('The count is:', counter_2.getCount());
+			counter_2.increase();
+			console.log('The count is:', counter_2.getCount());
+			counter_2.decrease();
+			console.log('The count is:', counter_2.getCount());
+
+			// se declara un nuevo valor y conserva el valor inicial
+			counter_2.count = 0;
+			console.log('The count is:', counter_2.getCount());
+			console.groupEnd();
+			////////////////////////////////
+		</script>
+	</body>
+</html>

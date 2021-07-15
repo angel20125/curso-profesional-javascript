@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Closures</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<a href="../codigo-practico-ejercicios/">Go back</a>
+		<p><em>Abre la consola</em></p>
+		<script>
+			///////////////////////////////////////////////
+			// 				==Clousore==
+			///////////////////////////////////////////////
+			// clase 6
+
+			//los clousores permiten que  Funciones  retornen funciones
+			function makeColorPrinter(color) {
+				let colorMessage = `The color is ${color}`;
+
+				return function () {
+					console.log(colorMessage);
+				};
+			}
+
+			let greenColorPrinter = makeColorPrinter('green');
+			console.log(greenColorPrinter()); //<- Esto ejecutará la función retornada
+			// console.log(greenColorPrinter) //<- esto retonará una función
+		</script>
+	</body>
+</html>

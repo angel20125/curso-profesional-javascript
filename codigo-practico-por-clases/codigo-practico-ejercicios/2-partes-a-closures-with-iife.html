@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Closures</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<a href="../codigo-practico-ejercicios/">Go back</a>
+		<p><em>Abre la consola</em></p>
+
+		<script>
+			///////////////////////////////////////////////
+			// 				==Clousores==
+			///////////////////////////////////////////////
+			// clase 6
+
+			/**
+			    En este caso  se tiene una IIFE (Immediately Invoked Function
+			             Expression) Las expresiones de función ejecutadas inmediatamente
+			             son funciones que se ejecutan tan pronto como se definen.  Estas
+			             funciones van encerradas entre paréntesis para indicar su ejecución
+			             de inmediato y  pueden o no llevar nombre.
+
+			             Se puede apreciar que dentro del scope de la función IIFE,
+			             existe una variable y una función y dicha función puede recordad
+			             el valor de variable  y esto se debe a que están en el mismo scope.
+			 */
+
+			//IIFE
+			// 1. La variable color es una variable local creada por IIFE.
+			// 2. La función printColor es una función interna, una clausura.
+			// 3. Usa una variable declarada en la función externa.
+			// 4. se llama a la función printColor dentro del scope de IIFE
+			(function () {
+				let color = 'green';
+				//2.
+				function printColor() {
+					console.log(color); //3.
+				}
+				printColor(); //4
+			})();
+		</script>
+	</body>
+</html>
