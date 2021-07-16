@@ -10,7 +10,10 @@ import AutoPlay from './plugin/AutoPlay.js';
 const video = document.querySelector('video'); //1.
 const playButton = document.querySelector('#playButton'); //2.
 const muteButton = document.querySelector('#muteButton'); //3.
-const player = new MediaPlayer({ el: video, plugins: [new AutoPlay()] }); //4.
+const player = new MediaPlayer({
+	el: video,
+	//plugins: [new AutoPlay()],
+});
 
 // pausar/reproducir el video
 playButton.onclick = () => player.togglePlay();
