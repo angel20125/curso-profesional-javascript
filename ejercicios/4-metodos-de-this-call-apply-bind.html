@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<title>this</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<a href="/ejercicios/">Go back</a>
+		<p><em>Abre la consola</em></p>
+
+		<h1>Estableciendo<code>this</code> con call, apply y bind</h1>
+
+		<script>
+			//clase 9
+			////////////////////////////////////////////
+			//          ==Método call, apply, bind==
+			////////////////////////////////////////////
+			/*
+                Se debe tomar encuenta que "function" es un "object" y tiene múltiples
+                métodos  entre ellos call, apply y bind
+            */
+
+			//  Contexto del Ejemplo
+			/*
+                el "object angel", "function greet", "function address",
+                están declarados en el scope global, es decir: sí llamamos
+                a las funciones greet() y address() el  "this" que está interno
+                de ella estará representado por "window", que es el objeto que
+                representa al navegador,  entonces para modificar el comportamiento
+                de "this" de la "function greet", "function address", se utilizará
+                los métodos call,apply y bind  respectivamente para demostrar como
+                se puede modificar el comportamiento de "this" añdiendole un contexto nuevo.
+
+            */
+			// Difernecia entre call, apply y bind
+			/*
+                la diferencia entre los 3 métodos es  es que call y apply llama la función
+                de inmediato mientras establece el "contexto de this" y se pasan por argumentos
+                y  bind retorna un función con el  "contexto de this" establecido y se puede llamar
+                luego.
+			*/
+			const angel = {
+				name: 'Angel',
+				lastName: 'Quintero',
+			};
+			const richard = {
+				name: 'Richard',
+				lastName: 'Kauman',
+			};
+			const jose = {
+				name: 'José',
+				lastName: 'Bolívar',
+			};
+
+			function greet() {
+				console.log(`Hola. Soy ${this.name} ${this.lastName}`);
+			}
+			function address(country, state) {
+				console.log(
+					`El ciudadano ${this.name} ${this.lastName}, y su dirección es ${country}, ${state}`
+				);
+			}
+
+			////////////////////////////////////////////
+			//          ==Método call==
+			////////////////////////////////////////////
+			/*
+                El "método call" se le  envía como primer argumento
+                el "contexto this" y si la función a la cual se le
+                aplica "call", necesita otros argumentos entonces
+                se envía después del primer argumento serado por coma.
+			*/
+			console.group('Metodo Apply');
+
+			// Establecer this usando call, cuando no se tiene que enviar argumentos a la función
+			greet.call(angel);
+			// Establecer this usando call y enviado argumentos a la función
+			address.call(angel, 'Venezuela', 'Caracas');
+
+			console.groupEnd();
+
+			////////////////////////////////////////////
+			//          ==Método apply==
+			////////////////////////////////////////////
+			/*
+                El "método apply" se le  envia como primer argumento
+                el "contexto this" y si la función a la cual se le
+                aplica "apply", necesita otros argumentos entonces
+                se envía a través de un array después del primer argumento
+                que es el contexto de this.
+
+			*/
+			console.group('Método Apply');
+
+			// Establecer this usando apply, cuando no se tiene que enviar argumentos a la función
+			greet.apply(angel);
+			// Establecer this usando apply y enviado argumentos a la función
+			address.apply(angel, ['Venezuela', 'Caracas']);
+
+			console.groupEnd();
+
+			////////////////////////////////////////////
+			//          ==Método bind==
+			////////////////////////////////////////////
+			/*
+                El método Bind se enviá como primer parámetro
+                el "contexto de this"a diferencia de los otros métodos
+                este, "retorna una función" con el "this atado al
+                contexto"
+            */
+			console.group('Método Bind');
+
+			// Establecer this usando Bind, cuando no se tiene que enviar argumentos a la función
+			let richardGreeting = greet.bind(richard);
+			richardGreeting();
+			// Establecer this usando apply y enviado argumentos a la función
+			let richardAddress = address.bind(richard, 'Venezuela', 'Caracas');
+			richardAddress();
+
+			console.groupEnd();
+
+			////////////////////////////////////////////
+			//  ==Método bind con function currying==
+			////////////////////////////////////////////
+			/*
+                function currying es el método la técnica que nos
+                permite guardar argumentos parciales, o que es lo mismo
+                llamar funciones con menos argumentos de lo que espera.
+
+            */
+			console.group('Método Bind con Function Currying');
+
+			// hardCodeando los argumentos
+			let joseAddress = address.bind(jose, 'Venezuela', 'Caracas');
+			joseAddress();
+
+			// Enviado argumentos parciales
+			console.log('Su nueva  dirección');
+			joseAddress = address.bind(jose, 'EEUU');
+			joseAddress('New York');
+
+			console.groupEnd();
+		</script>
+	</body>
+</html>
